@@ -1,0 +1,47 @@
+
+body {
+	margin-bottom: 80px;
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+
+.panel-body {
+	padding-top: 0;
+}
+
+
+.featuredImg {
+	margin-bottom: 15px;
+	width: 100%;
+}
+
+.btn{
+	margin-left:10px;
+}
+
+.jumbotron {
+    padding: 0.5em 0.6em;
+    h1 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 10px;
+        .btn {
+            padding: 0.5em;
+        }
+    }
+}
+.wrapper .navbar {
+   background-color: transparent;
+   background: transparent;
+   border-color: transparent;
+}
+
+.wrapper .navbar li { color: #000 } 
+
+div#frm *{
+  display:inline
+}

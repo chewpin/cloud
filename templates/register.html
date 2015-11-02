@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+{% if message %}
+<div class="container">
+  <div class="jumbotron">
+    <center><h2> {{message}} </h2>
+  </center>
+  </div>
+</div>
+{% endif %}
+
+
+<style type="text/css">
+  label {
+    display: inline-block;
+    width:200px;
+    text-align: right;
+  } 
+  .form-control-inline {
+      min-width: 0;
+      width: auto;
+      display: inline;
+  }
+</style>
+
+<div class="container">
+  <div class = "row">  
+    <div class = "col-md-8 col-md-offset-2">
+      <div class = "panel panel-default">
+        <div class = "panel-body">
+          <div class = "page-header col-md-offset-2">
+            <h3 > {{register_title}} 
+            </h3>
+          </div>
+          {% if action and ( action == "register" or action == "edit_user" ) %}
+            {% if action == "register" %}
+            <form method="post" action="{{ url_for('user.register') }}" class = "form-horizontal">
+            {% endif %}
+            {% if action == "edit_user" %}
+            <form method="post" action="{{ url_for('user.edit_user') }}" class = "form-horizontal">
+            {% endif %}
+              {% if action != "edit_user" %}
+              <div class="form-group">
+                <label for="username" >Username&emsp;</label>
+                <input type="text" id="username" name="username" class="form-control form-control-inline" pattern="[A-Za-z0-9_].{2,20}" maxlength="20" title="3 to 20 characters" required /><br>
+              </div>
+              {% endif %}
+              <div class="form-group">
+                <label for="firstname">Firstname&emsp;</label>
+                <input type="text" id="firstname" name="firstname" class="form-control form-control-inline" class="form-control" maxlength="20" required /><br>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Lastname&emsp;</label>
+                <input type="text" id="lastname" name="lastname" class="form-control form-control-inline" maxlength="20" required /><br>
+              </div>
+              <div class="form-group">
+                <label for="email">Email&emsp;</label>
+                <input type="email" id="email" name="email" class="form-control form-control-inline" maxlength="20" required /><br>
+              </div>
+              <div class="form-group">
+                <label for="password">Password&emsp;</label>
+                <input type="password" name="password" class="form-control form-control-inline" id="password" pattern="(?=.*[a-zA-Z])(?=.*\d)\w{5,15}" maxlength="15" title="between 5 to 15 characters, contain at least one digit and at least one letter" required /><br>
+              </div>
+              <div class="form-group">
+              <label for="confirm_password">Confirm Password&emsp;</label>
+              <input type="password" name="confirm" class="form-control form-control-inline" id="confirm_password" pattern="(?=.*[a-zA-Z])(?=.*\d)\w{5,15}" maxlength="15" title="between 5 to 15 characters, contain at least one digit and at least one letter" required /><br>
+              </div>
+
+              <script>
+                var password = document.getElementById("password");
+                var confirm_password = document.getElementById("confirm_password");
+                function validatePassword(){
+                  if(password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Passwords Don't Match");
+                  } else {
+                    confirm_password.setCustomValidity('');
+                  }
+                }
+                password.onchange = validatePassword;
+                confirm_password.onkeyup = validatePassword;
+              </script>
+
+              <p>
+                {% if action == "register" %}
+                  <input type="hidden" name="op" value="register">
+                  <input type="submit" ng-click="validatePassword()" value="Register" class="btn btn-success pull-right">
+                {% endif %}
+                {% if action == "edit_user" %}
+                  <input type="hidden" name="op" value="edit">
+                  <input type="hidden" name="username" value="{{username}}">
+                  <input type="submit" value="Edit" class="btn btn-success pull-right">
+                {% endif %}
+            </form>
+          {% endif %}
+          {% if action == "edit_user" %}
+            <form method="post" action="{{ url_for('user.delete_user') }}" class = "form-horizontal">
+              <input type="hidden" name="op" value="delete">
+              <input type="hidden" name="username" value="{{username}}">
+              <input type="submit" value="Delete me as a user" class="btn btn-success pull-right">
+            </form>
+
+          {% endif %}
+
+          {% if action and action == "login" %}
+            <form method="post" action="{{ url_for('user.login') }}" class = "form-horizontal">
+              <div class="form-group">
+                <label for="username">Username&emsp;</label>
+                <input type="text" id="username" name="username" class="form-control form-control-inline" /><br>
+              </div>
+              <div class="form-group">
+                <label for="password">Password&emsp;</label>
+                <input type="password" id="password" name="password" class="form-control form-control-inline" /><br>
+              </div>
+              <input type="hidden" name="op" value="login">
+              <p><input type="submit" value="Log in" class="btn btn-success pull-right">
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
