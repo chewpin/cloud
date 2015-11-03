@@ -1,5 +1,3 @@
-UPLOAD_FOLDER = 'static/pictures'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'bmp', 'gif'])
 
 MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 465
@@ -16,3 +14,6 @@ MSSQL_SERVER = "cloudsubscriber.cfkf6u8wfyd.us-west-2.rds.amazonaws.com"
 MSSQL_USER = "fanzy"
 MSSQL_PASSWORD = "Cloud2015"
 MSSQL_DB = "cloud_team"
+
+LOGIN_USERNAME = 'cloud2015'
+LOGIN_PASSWORD = 'Cloud2015'

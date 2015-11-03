@@ -20,3 +20,4 @@ def getDashboard():
     cursor.execute("SELECT TagName, TagValue FROM dbo.Tag")
     data = cursor.fetchall()
     return render_template('dashboard.html', data=data)
+
