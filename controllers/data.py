@@ -77,7 +77,7 @@ def getAlbums():
             "now": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
         send_mail()
-        return render_template('show_data.html', **options)
+        return render_template('dashboard.html', **options)
         
 
 

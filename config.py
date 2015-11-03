@@ -11,3 +11,8 @@ DEFAULT_MAIL_SENDER = 'cloudmanufacturing2015@gmail.com'
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = ''
 MYSQL_DB = 'MDP'
+
+MSSQL_SERVER = "cloudsubscriber.cfkf6u8wfyd.us-west-2.rds.amazonaws.com"
+MSSQL_USER = "fanzy"
+MSSQL_PASSWORD = "Cloud2015"
+MSSQL_DB = "cloud_team"
