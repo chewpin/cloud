@@ -20,18 +20,6 @@ def remove_session():
     session.pop('username', None)
     session.pop('lastactivity', None)
 
-def session_has_expired():
-    end = datetime.now()
-    start = session["lastactivity"]
-    duration = end - start
-    print "end had been inactive for " , end - start
-    seconds = duration.total_seconds()
-    hours = seconds // 3600
-    minutes = (seconds % 3600) // 60
-    if minutes >= 5:
-        return True
-    else:
-        return False
 
 def send_mail():
     msg = Message("Warning",
@@ -43,25 +31,6 @@ def send_mail():
 def getAlbums():
     if "username" in session:
         username = session["username"]
-        if session_has_expired():
-            remove_session()
-            print "\n\nSESSION HAS EXPIRED!!!!\n\n"
-            options = {
-                "url": "/cloud/data",
-                "message": "SESSION HAS EXPIRED!!!"
-            }
-            return render_template('auth_fail.html', **options)
-        update_session_time()
-        cur = mysql.connection.cursor()
-        cur.execute('''SELECT * FROM Album WHERE username = %s''', (username,))
-        albums=cur.fetchall()
-        options = {
-            "albums": albums,
-            "username": username
-        }
-        return render_template('show_albums.html', **options)
-    else:
-        print "\n\n no session getAlbums"
         cur = mysql.connection.cursor()
         cur.execute('''SELECT * FROM Comment''')
         real_data=cur.fetchall()
@@ -78,6 +47,12 @@ def getAlbums():
         }
         send_mail()
         return render_template('show_data.html', **options)
+    else:
+        print "\n\n no session getAlbums"
+        options = {
+            "message": "No access to data. Please log in"
+        }
+        return redirect( url_for('user.login'))
         
 
 

@@ -1,5 +1,3 @@
-UPLOAD_FOLDER = 'static/pictures'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'bmp', 'gif'])
 
 MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 465
@@ -11,3 +9,6 @@ DEFAULT_MAIL_SENDER = 'cloudmanufacturing2015@gmail.com'
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = ''
 MYSQL_DB = 'MDP'
+
+LOGIN_USERNAME = 'cloud2015'
+LOGIN_PASSWORD = 'Cloud2015'
