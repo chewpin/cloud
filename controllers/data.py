@@ -21,11 +21,7 @@ def remove_session():
     session.pop('lastactivity', None)
 
 
-def send_mail():
-    msg = Message("Warning",
-                  sender="cloudmanufacturing2015@gmail.com",
-                  recipients=["chenxijessicacx@gmail.com"])
-    mail.send(msg)
+
 
 @data.route('/data', methods=['POST', 'GET'])
 def getAlbums():

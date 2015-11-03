@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block extra_meta %}
-<META http-equiv="refresh" content="10;URL={{url_for('data.getAlbums')}}">
+<META http-equiv="refresh" content="2;URL={{url_for('main.getDashboard')}}">
 {% endblock %}
 {% block body %}
 
@@ -9,14 +9,13 @@
     <div class = "col-md-10 col-md-offset-1">
       <div class = "panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">{{now}}</h3>
+          <h3 class="panel-title">Last Updated Time: {{ now }}</h3>
         </div>
         <div class = "panel-body"> 
           <table class="table table-striped"> 
-
             <tr>
                 <h2></h2>
-                <th></th>
+                <th>Tag Name</th>
                 <th>{% if data %}Real-time Data{% endif %}</th>
                 
                 <th>Simulated data</th>
@@ -24,24 +23,23 @@
             </tr>
             {% for dat in data %}
             <tr>
-              <div> 
-                <td class = "col-md-1">
+              <div>
+                <td class = "col-md-2">
+                  <font size="3">{{ dat.TagName }}</font>
                 </td>
                 <td class = "col-md-5">
-                  <font size="3">{{ dat[2] }}</font>
+                  <font size="3">{{ dat.TagValue }}</font>
                 </td>
-                <td >
-                  <font size="3">{% if simulate_data[loop.index0] %}{{ simulate_data[loop.index0][4] }}{% endif %}</font>
+                <td class = "col-md-5">
+                  <font size="3">{{ simulate_data[loop.index0].TagValue }}</font>
                 </td>
               </div>
             {% endfor %}
             </tr>
-
-
-
           </table>
         </div>
       </div>
+    <a class="btn btn-default" href="{{ url_for('main.sendMail') }}">Send Email</a>
     </div>
   </div>
 </div>
